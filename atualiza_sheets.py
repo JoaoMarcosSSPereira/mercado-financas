@@ -9,8 +9,7 @@ Original file is located at
 # Nova seção
 """
 
-from google.colab import auth
-auth.authenticate_user()
+
 
 
 
