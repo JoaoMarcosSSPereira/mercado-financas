@@ -1,8 +1,10 @@
 name: Atualiza Google Sheets
 
 on:
+  # Agenda diária às 10h BRT (13 UTC)
   schedule:
-    - cron: '0 13 * * *'  # Roda todo dia às 10h BRT (13 UTC)
+    - cron: '0 13 * * *'
+  # Permite disparar manualmente via interface do GitHub
   workflow_dispatch:
 
 jobs:
@@ -10,20 +12,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout código
+      # 1) Faz checkout do seu código
+      - name: Checkout do código
         uses: actions/checkout@v4
 
+      # 2) Instala as dependências do seu projeto
       - name: Instalar dependências
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
 
+      # 3) Salva a chave de serviço no disco (preservando quebras de linha)
       - name: Salvar chave de serviço Google (secreta)
         run: |
-          echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}" > credentials.json
+          echo '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}' > credentials.json
 
+      # 4) Executa seu script Python
       - name: Rodar script de atualização
         env:
+          # Aponta para o arquivo criado acima
           GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/credentials.json
         run: |
           python atualiza_sheets.py
