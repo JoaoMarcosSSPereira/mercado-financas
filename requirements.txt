@@ -1,0 +1,7 @@
+pandas
+gspread
+gspread_dataframe
+yfinance
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
