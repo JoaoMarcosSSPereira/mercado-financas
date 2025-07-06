@@ -12,7 +12,7 @@ Original file is located at
 from google.colab import auth
 auth.authenticate_user()
 
-!pip install --upgrade gspread gspread_dataframe yfinance
+
 
 import pandas as pd
 import yfinance as yf
