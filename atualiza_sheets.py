@@ -65,7 +65,7 @@ for ticker in TICKERS:
 
             # flatten multiindex (caso haja)
             if isinstance(df.columns, pd.MultiIndex):
-                df.columns = [col[-1] for col in df.columns]
+                df.columns = [col[0] for col in df.columns]
 
             df.reset_index(inplace=True)
             df.rename(columns={
